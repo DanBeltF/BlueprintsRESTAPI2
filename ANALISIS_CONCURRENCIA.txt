@@ -1,0 +1,18 @@
+Qué condiciones de carrera se podrían presentar?
+
+- Consultar una blueprint que haya sido eliminada o modificada dada la condicion de carrera.
+
+- Dada la situacion anterior, un usuario podria querer editar/dibujar una blueprint que ya no existe, lo cual causaria un error.
+
+- Que un usuario cree una blueprint, luego quiera editarla, pero otro usuario ya la modifico o borro.
+
+
+Cuales son las respectivas regiones críticas?
+- En InMemoryBlueprintPersistence, el atributo blueprints
+
+
+Solucion
+- Cambiar los ArrayList por CopyOnWriteArrayList que es thread-safe
+
+- Cambiar los HashMap por ConcurrentHashMap (thread-safe)  o SynchronizedHashMap (bloquea a nivel de objeto)
+
